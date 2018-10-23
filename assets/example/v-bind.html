@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind </title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+    <style>
+        .classA{color: red}
+        .classB{font-size: 14px}
+    </style>
+</head>
+<body>
+    <h1>v-bind 标签上的属性绑定</h1>
+    <p>常用应用在标签的class绑定</p>
+    <hr>
+    <div id="app"> 
+        <img style="width:200px"   v-bind:src="imgSrc" alt="" srcset="">
+        <p><a v-bind:href="webUrl">jspang v-bind 教程</a></p> 
+        <h3 v-bind:class="className">1最常用：绑定class</h3>
+        <h3 v-bind:class="{classA:isOk}">2绑定class中的判断</h3>
+        <h3 v-bind:class="[classA,classB]">3绑定class中的数组</h3>
+        <h3 v-bind:class="isOK?classA:classB">4三元运算符</h3>
+        <div>
+            <input type="checkbox" v-model="isOk" id="isOk">
+            <label for="isOk">isOK={{isOk}}</label>
+        </div>
+        <h3 :style="{color:red,fontSize:fonts}">5绑定style属性</h3>
+        <h3 :style="styleObj">5绑定style对象</h3>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{
+                imgSrc:'../images/img_01.jpg',
+                webUrl:'https://www.chungold.com/course/6/task/25/show',
+                classA:'classA',
+                classB:'classB',
+                isOk:true,
+                red:'red',
+                fonts:'40px',
+                styleObj:{
+                    color:"green",
+                    fontSize:'10px' //驼峰命名
+                }
+            }
+        })
+    </script>
+</body>
+</html>

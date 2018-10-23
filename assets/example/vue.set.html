@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> </title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>全局API Vue.set</h1>
+    <hr>
+    <div id="app"> 
+        <div>
+            {{count}} 
+        </div>
+        <ul>
+            <li v-for="item in items">{{item}}</li>
+        </ul>
+    </div>
+    <button onclick="add()">add</button>
+    <script type="text/javascript">
+        function add(){
+           Vue.set(app.items,0,'ddd') //Vue.set存在的原因 在虚拟DOM中改变数组及对象下标对应的的值
+           app.count++
+           //outDate.count++
+        }
+        var outDate={
+            count:1,
+            goods:'car',
+            items:['aa','bb','cc']
+        }
+        var app = new Vue({
+            el:"#app",
+            data:outDate //外部声明的变量赋值给构造器
+        })
+    </script>
+</body>
+</html>

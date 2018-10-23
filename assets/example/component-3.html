@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件component-3 父子组件</title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>component-1</h1>
+    <p>父子组件</p> 
+    <hr>
+    <div id="app">  
+        <panda></panda> 
+    </div>  
+    <script type="text/javascript"> 
+        //子组件
+        var cityComponent = {
+            template:`
+                <div style="color:red">四川 of china</div>
+            `
+        } 
+        //在构造器外部声明了一个局部组件
+        var pandaComponent = {
+            template:`
+                <div style="color:grenn">
+                    panda from 
+                    <city></city>
+                </div>
+            `,
+            components:{
+                //子组件必须挂载在父组件components选项中
+                'city':cityComponent
+            }
+        }
+       
+        var app = new Vue({
+            el:"#app",
+            data:{
+                
+            },
+            //局部组件
+            components:{
+                "panda":pandaComponent //注册组件 组件名：组件模板
+                
+            }
+                 
+        }) 
+    </script>
+</body>
+</html>

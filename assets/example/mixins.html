@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mixins 混入操作 </title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>mixins 选项</h1>
+    <p>
+        用处<br/>
+        1、公用方法，使用时混入构造器<br/>
+        2、不易再更改原有构造器的情况下<br/>
+        <strong>执行顺序：全局混入>构造器混入>原生</strong>
+    </p>
+    
+    <hr>
+    <div id="app"> 
+        {{num}}
+        <p>
+            <button @click="add">add</button>
+        </p>
+    </div>
+    <script type="text/javascript">
+        //
+        var addConsole = {
+            //生命周期函数 updated
+            updated:function(){
+                console.log('构造器混入')
+            }
+        };
+        
+        //定义一个全局混入
+        Vue.mixin({
+            updated:function(){
+                console.log('我是全局的混入')
+            }
+        })
+        var app = new Vue({
+            el:"#app",
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    this.num++
+                }
+            },
+            updated:function(){
+                console.log('我是原生的updated')
+            },
+            mixins:[addConsole]//数组 这里注册是构造器混入
+        })
+        
+    </script>
+</body>
+</html>

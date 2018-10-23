@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>extends  </title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>extend 选项 扩展</h1>
+    <p> 
+        执行顺序：原生方法>扩展updated>原生updated
+    </p>
+    
+    <hr>
+    <div id="app"> 
+        {{num}}
+        ${num}
+        <p>
+            <button @click="add">add</button>
+        </p>
+    </div>
+    <script type="text/javascript"> 
+        var extendObj={
+            updated:function(){
+                console.log('我是扩展的updated')
+            },
+            methods:{
+                add:function(){
+                    console.log("我是扩展的方法")
+                    this.num++
+                }
+                //如果扩展和混入的方法名和原生方法名的相同，则只执行原生方法
+            }
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    console.log('我是原生的方法')
+                    this.num++
+                } 
+            },
+            updated:function(){
+                console.log('我是原生的updated')
+            },
+            //扩展
+            extends:extendObj ,//扩展只能写一个对象不可放数组
+
+            delimiters:['${','}'] //重定义插值方式
+           
+        })
+        
+    </script>
+</body>
+</html>

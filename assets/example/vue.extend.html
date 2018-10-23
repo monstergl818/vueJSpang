@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> </title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>全局Api--Vue.extend 扩展实例构造器</h1>
+    <hr> 
+     <div id="author"></div>
+    
+    <script type="text/javascript">
+        var authorExtend = Vue.extend({
+            template:`
+                <p><a v-bind:href="authorurl">{{authorname}}</a></p>
+            `,
+            data:function(){
+                return{
+                    authorname:'jspang',
+                    authorurl:'https://www.chungold.com/course/7/task/34/show'
+                }
+            }
+        })
+
+        new authorExtend().$mount("#author")//挂载
+        // var app = new Vue({
+        //     el:"#app",
+        //     data:{
+                
+        //     }
+        // })
+    </script>
+</body>
+</html>

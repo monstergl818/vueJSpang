@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed option</title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>computed 数据改造(数据计算)，不污染原始数据</h1>
+    <hr>
+    <div id="app"> 
+        <div>{{newPrice}}</div>
+        <ol>
+            <li v-for="item in newsList">{{item.title}}-{{item.date}}</li>
+        </ol>
+        <p>computed 倒叙之后</p>
+        <ol>
+                <li v-for="item in reverseNews">{{item.title}}-{{item.date}}</li>
+            </ol>
+    </div>
+    <script type="text/javascript">
+        var  newsList=[
+            {title:'新闻标题1',date:'2018年10月16日11:27:08'},
+            {title:'新闻标题2',date:'2018年10月16日11:27:08'},
+            {title:'新闻标题3',date:'2018年10月16日11:27:08'},
+            {title:'新闻标题4',date:'2018年10月16日11:27:08'},
+        ]
+        var app = new Vue({
+            el:"#app",
+            data:{
+                price:10,
+                newsList:newsList
+            },
+            computed:{
+                newPrice:function(){
+                    return  this.price ="￥"+this.price+"元" 
+                },
+                reverseNews:function(){
+                    return this.newsList.reverse()
+                    //reverse()颠倒数组中元素的顺序
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件component-2</title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>component-2</h1>
+    <p>定义有属性的组件 props</p>
+    <hr>
+    <div id="app"> 
+        <!-- 插值方式 -->
+        <comp cityname="四川"></comp>
+        <!-- 绑定传值方式 -->
+        <comp v-bind:cityname="city"></comp> 
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{
+                city:"china"
+            },
+            components:{
+                'comp':{
+                    template:`
+                        <div style="color:grenn">panda from {{cityname}}</div>
+                    `,
+                    props:['cityname']//数组
+                }
+            }
+        })
+    </script>
+</body>
+</html>

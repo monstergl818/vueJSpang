@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch 选项 监控数据</title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>watch 监控数据</h1>
+    <hr>
+    <div id="app"> 
+        <p>今日温度：{{tem}}</p>
+        <p>穿衣建议:{{sug}}</p>
+        <div>
+            <button @click="add">加温度</button>
+            <button @click="minus">减温度</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var sug=[
+            '短袖T恤','夹克长裙','棉衣'
+        ]
+        var app = new Vue({
+            el:"#app",
+            data:{
+                tem:20,
+                sug:'长裙'
+            },
+            methods:{
+                add:function(){
+                    this.tem+=5
+                },
+                minus:function(){
+                    this.tem-=5
+                }
+            },
+            //构造器里的写法
+            // watch:{
+            //     //监控tem,匿名方法两个值（新值，老值）
+            //     tem:function(newtem,odtem){
+            //         if(newtem>26){
+            //             this.sug=sug[0]
+            //         }else if(newtem<30 && newtem>0){
+            //             this.sug=sug[1]
+            //         }else{
+            //             this.sug=sug[2]
+            //         }
+            //     }
+            // }
+        })
+
+        //构造器外部watch写法  $watch()实例属性写法
+        app.$watch('tem',function(newtem,oldtem){
+            if(newtem>26){
+                this.sug=sug[0]
+            }else if(newtem<30 && newtem>0){
+                this.sug=sug[1]
+            }else{
+                this.sug=sug[2]
+            }
+        })
+    </script>
+</body>
+</html>

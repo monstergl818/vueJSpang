@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methods</title>
+    <script type="text/javascript" src="../js/vue.js"></script> 
+</head>
+<body>
+    <h1>methods</h1>
+    <p>
+        传值<br/>
+        event<br/>
+        组件调用构造器里的方法  .native<br/>
+        作用域外调用构造器里的方法 
+    </p>
+    <hr>
+    <div id="app"> 
+        <p>{{aa}}</p>
+        <div>
+            <!-- 带参数 -->
+            <button @click="add(5)">add</button>
+            <p>组件调用构造器中methods里原始方法：使用修饰符.native调用</p>
+           <btn @click.native="add(2)"></btn>
+        </div>
+    </div>
+    <p>外部调用</p>
+    <button onclick="app.add(10)">外部add</button>
+    <script type="text/javascript">
+        var btn={
+            template:`
+            <button>add</button>
+            `
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                aa:1
+            },
+            methods:{
+                //1、methods传值
+                //2、event参数
+                add:function(num,event){
+                    if(num!=''){
+                        this.aa+=num
+                    }else{
+                        this.aa++
+                    }
+                    console.log(event)
+                    //点击时鼠标的东西  用于交互性比较强的场景
+                }
+            },
+            components:{
+                'btn':btn
+            }
+        })
+    </script>
+</body>
+</html>
